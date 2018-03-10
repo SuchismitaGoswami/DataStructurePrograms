@@ -1,0 +1,9 @@
+#Settings File
+.settings
+
+#folder
+bin/
+
+#Metafile
+.project
+.classpath
