@@ -5,6 +5,12 @@ public class SingleLinkedList<T> {
 	public SingleLinkedList(){
 		this.head = null;
 	}
+	
+	public Node<T> getHead() {
+		return head;
+	}
+
+
 	public void addFirst(T data){
 		if(this.head == null)
 		{
@@ -47,16 +53,16 @@ public class SingleLinkedList<T> {
 		}
 	}
 	
-	public int deleteFirst() throws Exception{
+	public T deleteFirst() throws Exception{
 		if(this.head != null){
 			Node<T> ref = this.head;
 			if(ref.getNext() != null){
-			  int data = (Integer)this.head.getData();
+			  T data = this.head.getData();
 			  this.head = this.head.getNext();
 			  ref.setNext(null);
 			  return data;
 			}else{
-				int data = (Integer)this.head.getData();
+				T data = this.head.getData();
 				this.head = null;
 				return data;
 				
@@ -67,7 +73,7 @@ public class SingleLinkedList<T> {
 		}
 	}
 	
-	public int deleteLast() throws Exception{
+	public T deleteLast() throws Exception{
 		
 		if(this.head == null){
 			throw new Exception("No data");
@@ -78,14 +84,14 @@ public class SingleLinkedList<T> {
 				slow = fast;
 				fast = fast.getNext();
 			}
-			int data = (Integer)fast.getData();
+			T data = fast.getData();
 			slow.setNext(null);
 			return data;
 		}
 		
 	}
 	
-	public int deleteMiddle(int position) throws Exception{
+	public T deleteMiddle(int position) throws Exception{
 		if(this.head == null){
 		  	throw new Exception("No data");
 		}else{
@@ -100,7 +106,7 @@ public class SingleLinkedList<T> {
 				fast = fast.getNext();
 				index++;
 			}
-			int data = (Integer)fast.getData();
+			T data = fast.getData();
 			slow.setNext(fast.getNext());
 			fast.setNext(null);
 			return data;
@@ -108,6 +114,48 @@ public class SingleLinkedList<T> {
 			
 		}
 	}
- 
-
+	
+	public boolean searchElement(T searchData){
+		Node<T> ref = this.head;
+		while(ref != null){
+			if(ref.getData() == searchData){
+				return true;
+			}
+			ref = ref.getNext();
+		}
+		return false;
+	}
+	
+	public void reverseLinkedList(){
+		Node<T> p = this.head.getNext();
+		Node<T> q = this.head;
+		Node<T> r = null;
+		while(p != null ){
+			q.setNext(r);
+			r=q;
+			q=p;
+			p=p.getNext();
+		}
+		q.setNext(r);
+		this.head = q;
+	}
+	
+	
+	public void destroyLinedList() throws Exception{
+		Node<T> ref = this.head;
+		int index = 1;
+		while(ref != null){
+			deleteMiddle(index);
+			index++;
+			ref = ref.getNext();
+		}	
+	}
+	
+	public void dispalyList(){
+		Node<T> ref = this.head;
+		while(ref != null){
+			System.out.println(ref.getData());
+			ref = ref.getNext();
+		}
+	}
 }
