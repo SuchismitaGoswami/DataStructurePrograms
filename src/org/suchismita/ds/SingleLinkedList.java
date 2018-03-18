@@ -2,6 +2,7 @@ package org.suchismita.ds;
 
 public class SingleLinkedList<T> {
 	private Node<T> head;
+	
 	public SingleLinkedList(){
 		this.head = null;
 	}
@@ -10,7 +11,7 @@ public class SingleLinkedList<T> {
 		return head;
 	}
 
-
+  
 	public void addFirst(T data){
 		if(this.head == null)
 		{

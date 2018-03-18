@@ -2,27 +2,25 @@ package org.suchismita.ds;
 
 public class QueueUsingLinkedList<T> {
 
-	private SingleLinkedList<T> list;
-	private Node<T> rear ;
-	private Node<T> front;
+	private LinkedList<T> list;
 	
 	public QueueUsingLinkedList() {
-		list  = new SingleLinkedList<T>();
-	    this.rear = this.front = null;
+		// TODO Auto-generated constructor stub
+     list = new LinkedList<T>();
 	}
 	
-	public void insert(T data){
-		this.rear  = list.addLast(data);
-		this.front = this.list.getHead();
+	public void addQueue(T data){
+		list.add(data);
 	}
 	
+	public boolean isQueueEmpty(){
+		return (this.list.getFront() == null);
+	}
 	public T delete() throws Exception{
-		if(this.front == null){
+		if(this.isQueueEmpty()){
 			throw new Exception("No data");
 		}else{
-			T data = this.list.deleteFirst();
-			this.front = this.list.getHead();
-			return data;
+			return this.list.delete();
 		}
 		
 	}
